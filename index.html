@@ -4,20 +4,22 @@ title: 我的Blog
 ---
 
 <style type="text/css">
-	h2, p, ul {
+	article {
 		margin:20px auto;
 	}
 </style>
 
-<h2>{{ page.title }}</h2>
-<p>最新文章</p>
-<ul>
-	{% for post in site.posts %}
-		<li>
-			{{ post.date | date_to_string }}
-			<a href="{{ site.baseurl }}{{ post.url }}">
-				{{ post.title }}
-			</a>
-		</li>
-	{% endfor %}
-</ul>
+<article>
+	<h2>{{ page.title }}</h2>
+	<p>最新文章</p>
+	<ul>
+		{% for post in site.posts %}
+			<li>
+				{{ post.date | date_to_string }}
+				<a href="{{ site.baseurl }}{{ post.url }}">
+					{{ post.title }}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</article>
