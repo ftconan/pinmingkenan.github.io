@@ -6,11 +6,10 @@ title: 10个最常见的 HTML5 面试题及答案
 <h2>{{ page.title }}</h2>
 <p>{{ page.date | date_to_string }}</p>
 <p>
-		1、新的 HTML5 文档类型和字符集是？
+	1、新的 HTML5 文档类型和字符集是？
 
 	HTML5 文档类型很简单：
 
-	1
 	{% highlight ruby linenos %}
 	<!doctype html>
 	{% endhighlight ruby %}
@@ -22,16 +21,13 @@ title: 10个最常见的 HTML5 面试题及答案
 
 	HTML5 支持 MP3、Wav 和 Ogg 格式的音频，下面是在网页中嵌入音频的简单示例：
 
-	1
-	2
-	3
-	4
 	{% highlight ruby linenos %}
 	<audio controls>
 	    <source src=”jamshed.mp3″ type=”audio/mpeg”>
 	    Your browser does’nt support audio embedding feature.
 	</audio>
 	{% endhighlight ruby %}
+	
 	3、HTML5 中如何嵌入视频？
 
 	和音频类似，HTML5 支持 MP4、WebM 和 Ogg 格式的视频，下面是简单示例：
