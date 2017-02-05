@@ -31,7 +31,7 @@ title: 我的地盘我做主 —— My game, my turf, my rules
 			<span class="previous">&laquo; Prev</span>
 		{% endif %}
 
-		{% for page in (1..paginator.total.pages) %}
+		{% for page in (1..paginator.total_pages) %}
 			{% if page == paginator.page %}
 				<em>{{ page }}</em>
 			{% elsif page == 1 %}
