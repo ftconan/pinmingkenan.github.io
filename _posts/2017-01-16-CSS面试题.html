@@ -3,281 +3,345 @@ layout: default
 title: CSS面试题
 ---
 
-<h2>{{ page.title }}</h2>
-<p>{{ page.date | date_to_string }}</p>
-<p>
-	1.问: CSS属性是否区分大小写？
-
-	ul {
-	    MaRGin: 10px;
-	}
-	答：不区分。（HTML, CSS都不区分，但为了更好的可读性和团队协作，一般都小写，而在XHTML 中元素名称和属性是必须小写的。）
-
-	2.问：对行内元素设置margin-top 和margin-bottom是否起作用
-
-	答：不起作用。（需要注意行内元素的替换元素img、input，他们是行内元素，但是可以为其设置宽高，并且margin属性也是对其起作用的，有着类似于Inline-block的行为）。看具体效果：
-
-	复制代码
-	 <style> 
-	    div {
-	      width: 500px;
-	      height: 500px;
-	      margin-top: 100px;
-	      margin-left: 100px;
-	      background: lightblue;
-	    }
-	    span {
-	      margin: 100px;
-	    }
-	    img {
-	      margin: 100px;
-	    }
-	 </style>  
-	</head> 
-	<body class="claro"> 
-	  <div class="test_wrap">
-	    <span>
-	      我是行内元素，设置margin看是否对我起作用
-	    </span>
-	    <img src="" alt="我是行内替换元素，margin-top,margin-bottom对我起作用">
-	  </div>
-	</body> 
-	复制代码
-
-
-	3.问：对内联元素设置padding-top和padding-bottom是否会增加它的高度
-
-	答：不会。同上题，要注意行内元素的替换元素，img设置padding-top/bottom是会起作用的。
-
-	4.问：如果设置<p>的font-size: 10rem;那么当用户重置或拖拽浏览器窗口时，它的文本会不会受到影响？
-
-	答：不会。
-
-	rem是css3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。
-
-	5.问: 伪类选择器:checked将作用与input类型为radio或者checkbox, 不会作用于option？
-
-	答：不对。
-
-	可以作用于option，试了下感觉并没有什么用，虽然能选中，但是这个不能改变其中的属性。
-
-	复制代码
-	 <style>  
-	    option:checked {
-	      color: red;
-	    }
-	    input:checked {
-	      background: red;
-	    }
-	  </style> 
-
-	<div>
-	  <select>
-	    <option>Volvo</option>
-	    <option selected="selected">Saab</option>
-	    <option>Mercedes</option>
-	    <option>Audi</option>
-	  </select>
-	  <br>
-	  <br>
-	  <input type="radio" name="sex" value="male" checked>Male
-	  <br>
-	  <input type="radio" name="sex" value="female">Female
-	</div>
-	复制代码
-
-
-	6.问: 在HTML文本中，伪类:root总是指向html元素？
-
-	 答：是。
-
-	7.问:translate()方法能移动一个元素在z轴上的位置？
-
-	答：不能。它只能移动x,y轴的位置。translate3d可以。
-
-	8-14.这六个题都是在考css选择器的优先级，看下14题：
-
-	问：如下代码中文本“Sausage”的颜色是?
-
-	  <ul class="shopping-list" id="awesome">
-	    <li><span>Milk</span></li>
-	    <li class="favorite" id="must-buy"><span class="highlight">Sausage</span></li>
-	  </ul>
-	复制代码
-	  #awesome .favorite:not(#awesome) .highlight {
-	  　　color: red;
-	  }
-	  #awesome .highlight:nth-of-type(1):nth-last-of-type(1) {
-	  　　color: blue;
-	  }
-	复制代码
-	答：red
-
-
-
-	:nth-of-type(n) 选择器匹配属于父元素的特定类型的第 n 个子元素的每个元素.
-
-	:nth-last-of-type(n) 选择器匹配属于父元素的特定类型的第 n 个子元素的每个元素，从最后一个子元素开始计数。
-
-	15.
-
-	html:
-
-	<p id="example">Hello</p>
-	css:
-
-	#example {
-	    margin-bottom: -5px;
-	}
-	问：#example的位置会发什么什么？
-
-	答：所有带id为example的元素的位置都会向上移动5px.(一般id不取重复，如果真的这样设置了就和class效果一样）
-
-	16.省略。。。
-
-	17-21.公用一个例子：
-
-	<div id="test1">
-	    <span id="test2"></span>
-	</div>
-	17.问：#i-am-useless 会被浏览器加载吗？
-
-	#i-am-useless {background-image: url('mypic.jpg');}
-	答：不会。
-
-	18.问：mypic.jpg 会被浏览器加载吗？
-
-	#test2 {
-	    background-image: url('mypic.jpg');
-	    display: none;
-	}
-	答：会。
-
-	19.问：mypic.jpg 会被浏览器加载吗？
-
-	#test2 {
-	    background-image: url('mypic.jpg');
-	    visibility: hidden;
-	}
-	答：会。
-
-	20.问：mypic.jpg 会被浏览器加载吗？
-
-	复制代码
-	#test1 {
-	    display: none;
-	}
-	#test2 {
-	    background-image: url('mypic.jpg');
-	    visibility: hidden;
-	}
-	复制代码
-	答：不会。
-
-	21.问：mypic.jpg 会被浏览器加载吗？
-
-	复制代码
-	#test1 {
-	    visibility: hidden;
-	}
-	#test2 {
-	    background-image: url('mypic.jpg');
-	    display: none;
-	}
-	复制代码
-	答：会.
-
-	22-23.
-
-	css:
-
-	@media only screen and (max-width: 1024px) {
-	    margin: 0;
-	}
-	22.问：only选择器的作用是？
-
-	答：停止旧版本浏览器解析选择器的其余部分。
-
-	only 用来定某种特定的媒体类型，可以用来排除不支持媒体查询的浏览器。其实only很多时候是用来对那些不支持Media Query 但却支持Media Type 的设备隐藏样式表的。其主要有：支持媒体特性（Media Queries）的设备，正常调用样式，此时就当only 不存在；对于不支持媒体特性(Media Queries)但又支持媒体类型(Media Type)的设备，这样就会不读了样式，因为其先读only 而不是screen；另外不支持Media Qqueries 的浏览器，不论是否支持only，样式都不会被采用。
-
-	23.问：screen关键词是指设备的物理屏幕大小还是指浏览器的视窗。
-
-	答：浏览器的视窗。
-
-	24.问:overfloa:hidden 是否形成新的块级格式化上下文？
-
-	答：会。
-
-	会触发BFC的条件有：
-
-	float的值不为none。
-	overflow的值不为visible。
-	display的值为table-cell, table-caption, inline-block 中的任何一个。
-	position的值不为relative 和static。
-	根元素。
-	总结：
-
-	一.css选择器，优先级知识点考的挺多。如何计算优先级，参考http://www.cnblogs.com/wangfupeng1988/p/4285251.html 这篇文章引入的一个概念：特指度。特指度表示一个css选择器表达式的重要程度，可以通过一个公式来计算出一个数值，数越大，越重要。
-
-	这个计算叫做“I-C-E”计算公式，
-
-	I——Id；
-	C——Class；
-	E——Element；
-	即，针对一个css选择器表达式，遇到一个id就往特指度数值中加100，遇到一个class就往特指度数值中加10，遇到一个element就往特指度数值中加1。
-
-	举例：
-
-	CSS选择器表达式
-
-	特指度计算结果
-
-	p
-
-	1
-
-	p.large
-
-	11
-
-	P#large
-
-	101
-
-	div p#large
-
-	102
-
-	div p#large ul.list
-
-	113
-
-	div p#large ul.list li
-
-	114
-
-	 
-
-	注意：!important优先级最高，高于上面一切。* 选择器最低，低于一切。 
-
-	浏览器CSS匹配顺序：
-
-	浏览器CSS匹配不是从左到右进行查找，而是从右到左进行查找。比如#divBox p span.red{color:red;}，浏览器的查找顺序如下：先查找html中所有class='red'的span元素，找到后，再查找其父辈元素中是否有p元素，再判断p的父元素中是否有id为divBox的div元素，如果都存在则匹配上。浏览器从右到左进行查找的好处是为了尽早过滤掉一些无关的样式规则和元素。
-
-	二：display:none 和visibilty:hidden的区别。
-
-	两者都是将某个元素隐藏起来，区别是：display:none会使对象彻底消失，不占据空间；但是visibility:hidden所占的空间还在，留了一块空白区域。（不过上述例子，关于img加载的，还有些不是很懂 第18问，为什么display:none还是要加载图片，第20问，却没有加载图片）
-
-	三：浏览器渲染，这个自己要着重学习下：
-
-	浏览器的渲染原理简介
-	专题：浏览器:渲染重绘、重排两三事
-	浏览器加载和渲染HTML的顺序以及Gzip的问题
-	从FE的角度上再看输入url后都发生了什么
-	四：BFC 块级格式化上下文
-
-	深入理解BFC和Margin Collapse
-	CSS布局中一个简单的应用BFC的例子
-	理解BFC(Block Formatting Context)
-	我对BFC的理解
-</p>
+<article>
+	<h2>{{ page.title }}</h2>
+	<p>{{ page.date | date_to_string }}</p>
+	<p>
+		1.问: CSS属性是否区分大小写？
+
+		{% highlight ruby linenos %}
+			ul {
+			    MaRGin: 10px;
+			}
+		{% endhighlight ruby %}
+
+		答：不区分。（HTML, CSS都不区分，但为了更好的可读性和团队协作，一般都小写，而在XHTML 中元素名称和属性是必须小写的。）
+	</p>
+	<p>
+		2.问：对行内元素设置margin-top 和margin-bottom是否起作用
+
+		答：不起作用。（需要注意行内元素的替换元素img、input，他们是行内元素，但是可以为其设置宽高，并且margin属性也是对其起作用的，有着类似于Inline-block的行为）。看具体效果：
+
+	 	<style> 
+		    div {
+		      width: 500px;
+		      height: 500px;
+		      margin-top: 100px;
+		      margin-left: 100px;
+		      background: lightblue;
+		    }
+		    span {
+		      margin: 100px;
+		    }
+		    img {
+		      margin: 100px;
+		    }
+		</style>   
+		<body class="claro"> 
+		  <div class="test_wrap">
+		    <span>
+		      我是行内元素，设置margin看是否对我起作用
+		    </span>
+		    <img src="" alt="我是行内替换元素，margin-top,margin-bottom对我起作用">
+		  </div>
+		</body> 
+
+		CSS代码：
+		{% highlight ruby linenos %}
+			<style> 
+			    div {
+			      width: 500px;
+			      height: 500px;
+			      margin-top: 100px;
+			      margin-left: 100px;
+			      background: lightblue;
+			    }
+			    span {
+			      margin: 100px;
+			    }
+			    img {
+			      margin: 100px;
+			    }
+			</style>  
+			<body class="claro"> 
+			  <div class="test_wrap">
+			    <span>
+			      我是行内元素，设置margin看是否对我起作用
+			    </span>
+			    <img src="" alt="我是行内替换元素，margin-top,margin-bottom对我起作用">
+			  </div>
+			</body> 
+		{% endhighlight ruby %}
+	</p>
+	<p>
+		3.问：对内联元素设置padding-top和padding-bottom是否会增加它的高度
+
+		答：不会。同上题，要注意行内元素的替换元素，img设置padding-top/bottom是会起作用的。
+	</p>
+	<p>
+		4.问：如果设置<p>的font-size: 10rem;那么当用户重置或拖拽浏览器窗口时，它的文本会不会受到影响？
+
+		答：不会。
+
+		rem是css3新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。
+	</p>
+	<p>
+		5.问: 伪类选择器:checked将作用与input类型为radio或者checkbox, 不会作用于option？
+
+		答：不对。
+
+		可以作用于option，试了下感觉并没有什么用，虽然能选中，但是这个不能改变其中的属性。
+
+
+		 <style>  
+		    option:checked {
+		      color: red;
+		    }
+		    input:checked {
+		      background: red;
+		    }
+		  </style> 
+
+		<div>
+		  <select>
+		    <option>Volvo</option>
+		    <option selected="selected">Saab</option>
+		    <option>Mercedes</option>
+		    <option>Audi</option>
+		  </select>
+		  <br>
+		  <br>
+		  <input type="radio" name="sex" value="male" checked>Male
+		  <br>
+		  <input type="radio" name="sex" value="female">Female
+		</div>
+
+		CSS代码：
+		{% highlight ruby linenos %}
+		 <style>  
+		    option:checked {
+		      color: red;
+		    }
+		    input:checked {
+		      background: red;
+		    }
+		  </style> 
+
+		<div>
+		  <select>
+		    <option>Volvo</option>
+		    <option selected="selected">Saab</option>
+		    <option>Mercedes</option>
+		    <option>Audi</option>
+		  </select>
+		  <br>
+		  <br>
+		  <input type="radio" name="sex" value="male" checked>Male
+		  <br>
+		  <input type="radio" name="sex" value="female">Female
+		</div>
+		{% endhighlight ruby %}
+	</p>
+	<p>
+		6.问: 在HTML文本中，伪类:root总是指向html元素？
+
+		答：是。
+	</p>
+	<p>
+		7.问:translate()方法能移动一个元素在z轴上的位置？
+
+		答：不能。它只能移动x,y轴的位置。translate3d可以。
+	</p>
+	<p>
+		8-14.这六个题都是在考css选择器的优先级，看下14题：
+
+		问：如下代码中文本“Sausage”的颜色是?
+		CSS代码：
+		{% highlight ruby linenos %}
+		  <ul class="shopping-list" id="awesome">
+		    <li><span>Milk</span></li>
+		    <li class="favorite" id="must-buy"><span class="highlight">Sausage</span></li>
+		  </ul>
+
+		  #awesome .favorite:not(#awesome) .highlight {
+		  　　color: red;
+		  }
+		  #awesome .highlight:nth-of-type(1):nth-last-of-type(1) {
+		  　　color: blue;
+		  }
+		{% endhighlight ruby %}
+		答：red
+	</p>
+	<p>
+		:nth-of-type(n) 选择器匹配属于父元素的特定类型的第 n 个子元素的每个元素.
+
+		:nth-last-of-type(n) 选择器匹配属于父元素的特定类型的第 n 个子元素的每个元素，从最后一个子元素开始计数。
+	</p>
+	<p>
+		15.
+
+		html:
+		{% highlight ruby linenos %}
+			<p id="example">Hello</p>
+		{% endhighlight ruby %}
+		css:
+		{% highlight ruby linenos %}
+			#example {
+			    margin-bottom: -5px;
+			}
+		{% endhighlight ruby %}
+		问：#example的位置会发什么什么？
+
+		答：所有带id为example的元素的位置都会向上移动5px.(一般id不取重复，如果真的这样设置了就和class效果一样）
+	</p>
+	<p>
+		16.省略。。。
+
+		17-21.公用一个例子：
+
+		<div id="test1">
+		    <span id="test2"></span>
+		</div>
+		17.问：#i-am-useless 会被浏览器加载吗？
+
+		#i-am-useless {background-image: url('mypic.jpg');}
+		答：不会。
+
+		18.问：mypic.jpg 会被浏览器加载吗？
+
+		#test2 {
+		    background-image: url('mypic.jpg');
+		    display: none;
+		}
+		答：会。
+
+		19.问：mypic.jpg 会被浏览器加载吗？
+
+		#test2 {
+		    background-image: url('mypic.jpg');
+		    visibility: hidden;
+		}
+		答：会。
+
+		20.问：mypic.jpg 会被浏览器加载吗？
+
+		复制代码
+		#test1 {
+		    display: none;
+		}
+		#test2 {
+		    background-image: url('mypic.jpg');
+		    visibility: hidden;
+		}
+		复制代码
+		答：不会。
+
+		21.问：mypic.jpg 会被浏览器加载吗？
+
+		复制代码
+		#test1 {
+		    visibility: hidden;
+		}
+		#test2 {
+		    background-image: url('mypic.jpg');
+		    display: none;
+		}
+		复制代码
+		答：会.
+
+		22-23.
+
+		css:
+
+		@media only screen and (max-width: 1024px) {
+		    margin: 0;
+		}
+		22.问：only选择器的作用是？
+
+		答：停止旧版本浏览器解析选择器的其余部分。
+
+		only 用来定某种特定的媒体类型，可以用来排除不支持媒体查询的浏览器。其实only很多时候是用来对那些不支持Media Query 但却支持Media Type 的设备隐藏样式表的。其主要有：支持媒体特性（Media Queries）的设备，正常调用样式，此时就当only 不存在；对于不支持媒体特性(Media Queries)但又支持媒体类型(Media Type)的设备，这样就会不读了样式，因为其先读only 而不是screen；另外不支持Media Qqueries 的浏览器，不论是否支持only，样式都不会被采用。
+
+		23.问：screen关键词是指设备的物理屏幕大小还是指浏览器的视窗。
+
+		答：浏览器的视窗。
+
+		24.问:overfloa:hidden 是否形成新的块级格式化上下文？
+
+		答：会。
+
+		会触发BFC的条件有：
+
+		float的值不为none。
+		overflow的值不为visible。
+		display的值为table-cell, table-caption, inline-block 中的任何一个。
+		position的值不为relative 和static。
+		根元素。
+		总结：
+
+		一.css选择器，优先级知识点考的挺多。如何计算优先级，参考http://www.cnblogs.com/wangfupeng1988/p/4285251.html 这篇文章引入的一个概念：特指度。特指度表示一个css选择器表达式的重要程度，可以通过一个公式来计算出一个数值，数越大，越重要。
+
+		这个计算叫做“I-C-E”计算公式，
+
+		I——Id；
+		C——Class；
+		E——Element；
+		即，针对一个css选择器表达式，遇到一个id就往特指度数值中加100，遇到一个class就往特指度数值中加10，遇到一个element就往特指度数值中加1。
+
+		举例：
+
+		CSS选择器表达式
+
+		特指度计算结果
+
+		p
+
+		1
+
+		p.large
+
+		11
+
+		P#large
+
+		101
+
+		div p#large
+
+		102
+
+		div p#large ul.list
+
+		113
+
+		div p#large ul.list li
+
+		114
+
+		 
+
+		注意：!important优先级最高，高于上面一切。* 选择器最低，低于一切。 
+
+		浏览器CSS匹配顺序：
+
+		浏览器CSS匹配不是从左到右进行查找，而是从右到左进行查找。比如#divBox p span.red{color:red;}，浏览器的查找顺序如下：先查找html中所有class='red'的span元素，找到后，再查找其父辈元素中是否有p元素，再判断p的父元素中是否有id为divBox的div元素，如果都存在则匹配上。浏览器从右到左进行查找的好处是为了尽早过滤掉一些无关的样式规则和元素。
+
+		二：display:none 和visibilty:hidden的区别。
+
+		两者都是将某个元素隐藏起来，区别是：display:none会使对象彻底消失，不占据空间；但是visibility:hidden所占的空间还在，留了一块空白区域。（不过上述例子，关于img加载的，还有些不是很懂 第18问，为什么display:none还是要加载图片，第20问，却没有加载图片）
+
+		三：浏览器渲染，这个自己要着重学习下：
+
+		浏览器的渲染原理简介
+		专题：浏览器:渲染重绘、重排两三事
+		浏览器加载和渲染HTML的顺序以及Gzip的问题
+		从FE的角度上再看输入url后都发生了什么
+
+		四：BFC 块级格式化上下文
+
+		深入理解BFC和Margin Collapse
+		CSS布局中一个简单的应用BFC的例子
+		理解BFC(Block Formatting Context)
+		我对BFC的理解
+	</p>	
+</article>
