@@ -5,147 +5,148 @@ category: 前端
 tags: HTML5
 title: 10个最常见的 HTML5 面试题及答案
 ---
+<article>
+	<h2>{{ page.title }}</h2>
+	<p>{{ page.date | date_to_string }}</p>
+	<p>分类：{{ page.category }} 标签：{{ page.tags | array_to_setence_string }}</p>
+	<p>
+		1、新的 HTML5 文档类型和字符集是？
 
-<h2>{{ page.title }}</h2>
-<p>{{ page.date | date_to_string }}</p>
-<p>分类：{{ page.category }} 标签：{{ page.tags | array_to_setence_string }}</p>
-<p>
-	1、新的 HTML5 文档类型和字符集是？
+		HTML5 文档类型很简单：
 
-	HTML5 文档类型很简单：
+		{% highlight ruby linenos %}
+		<!doctype html>
+		{% endhighlight ruby %}
+		HTML5 使用 UTF-8 编码示例：
 
-	{% highlight ruby linenos %}
-	<!doctype html>
-	{% endhighlight ruby %}
-	HTML5 使用 UTF-8 编码示例：
+		1
+		<meta charset=”UTF-8″>
+		2、HTML5 中如何嵌入音频？
 
-	1
-	<meta charset=”UTF-8″>
-	2、HTML5 中如何嵌入音频？
+		HTML5 支持 MP3、Wav 和 Ogg 格式的音频，下面是在网页中嵌入音频的简单示例：
 
-	HTML5 支持 MP3、Wav 和 Ogg 格式的音频，下面是在网页中嵌入音频的简单示例：
+		{% highlight ruby linenos %}
+		<audio controls>
+		    <source src=”jamshed.mp3″ type=”audio/mpeg”>
+		    Your browser does’nt support audio embedding feature.
+		</audio>
+		{% endhighlight ruby %}
+		
+		3、HTML5 中如何嵌入视频？
 
-	{% highlight ruby linenos %}
-	<audio controls>
-	    <source src=”jamshed.mp3″ type=”audio/mpeg”>
-	    Your browser does’nt support audio embedding feature.
-	</audio>
-	{% endhighlight ruby %}
-	
-	3、HTML5 中如何嵌入视频？
+		和音频类似，HTML5 支持 MP4、WebM 和 Ogg 格式的视频，下面是简单示例：
 
-	和音频类似，HTML5 支持 MP4、WebM 和 Ogg 格式的视频，下面是简单示例：
+		1
+		2
+		3
+		4
+		<video width=”450″ height=”340″ controls>
+		  <source src=”jamshed.mp4″ type=”video/mp4″>
+		   Your browser does’nt support video embedding feature.
+		</video>
+		4、除了 audio 和 video，HTML5 还有哪些媒体标签？
 
-	1
-	2
-	3
-	4
-	<video width=”450″ height=”340″ controls>
-	  <source src=”jamshed.mp4″ type=”video/mp4″>
-	   Your browser does’nt support video embedding feature.
-	</video>
-	4、除了 audio 和 video，HTML5 还有哪些媒体标签？
+		HTML5 对于多媒体提供了强有力的支持，除了 audio 和 video 标签外，还支持以下标签：
 
-	HTML5 对于多媒体提供了强有力的支持，除了 audio 和 video 标签外，还支持以下标签：
+		<embed> 标签定义嵌入的内容，比如插件。
 
-	<embed> 标签定义嵌入的内容，比如插件。
+		1
+		<embed type=”video/quicktime” src=”Fishing.mov”>
+		<source> 对于定义多个数据源很有用。
 
-	1
-	<embed type=”video/quicktime” src=”Fishing.mov”>
-	<source> 对于定义多个数据源很有用。
+		1
+		2
+		3
+		4
+		<video width=”450″ height=”340″ controls>
+		     <source src=”jamshed.mp4″ type=”video/mp4″>
+		     <source src=”jamshed.ogg” type=”video/ogg”>
+		</video>
+		<track> 标签为诸如 video 元素之类的媒介规定外部文本轨道。 用于规定字幕文件或其他包含文本的文件，当媒介播放时，这些文件是可见的。
 
-	1
-	2
-	3
-	4
-	<video width=”450″ height=”340″ controls>
-	     <source src=”jamshed.mp4″ type=”video/mp4″>
-	     <source src=”jamshed.ogg” type=”video/ogg”>
-	</video>
-	<track> 标签为诸如 video 元素之类的媒介规定外部文本轨道。 用于规定字幕文件或其他包含文本的文件，当媒介播放时，这些文件是可见的。
+		1
+		2
+		3
+		4
+		5
+		6
+		<video width=”450″ height=”340″ controls>
+		     <source src=”jamshed.mp4″ type=”video/mp4″>
+		     <source src=”jamshed.ogg” type=”video/ogg”>
+		     <track kind=”subtitles” label=”English” src=”jamshed_en.vtt” srclang=”en” default></track>
+		      <track kind=”subtitles” label=”Arabic” src=”jamshed_ar.vtt” srclang=”ar”></track>
+		</video>
+		5、HTML5 Canvas 元素有什么用？
 
-	1
-	2
-	3
-	4
-	5
-	6
-	<video width=”450″ height=”340″ controls>
-	     <source src=”jamshed.mp4″ type=”video/mp4″>
-	     <source src=”jamshed.ogg” type=”video/ogg”>
-	     <track kind=”subtitles” label=”English” src=”jamshed_en.vtt” srclang=”en” default></track>
-	      <track kind=”subtitles” label=”Arabic” src=”jamshed_ar.vtt” srclang=”ar”></track>
-	</video>
-	5、HTML5 Canvas 元素有什么用？
+		Canvas 元素用于在网页上绘制图形，该元素标签强大之处在于可以直接在 HTML 上进行图形操作，
 
-	Canvas 元素用于在网页上绘制图形，该元素标签强大之处在于可以直接在 HTML 上进行图形操作，
+		1
+		2
+		<canvas id=”canvas1″ width=”300″ height=”100″>
+		</canvas>
+		不可思议的 HTML5 Canvas 应用试验
+		18个基于 HTML5 Canvas 的图表库
+		20个惊艳的 HTML5 Canvas 应用试验
+		16款 HTML5 Canvas 开发的网页游戏
+		推荐14款强大的HTML5素描及绘图工具
+		6、HTML5 存储类型有什么区别？
 
-	1
-	2
-	<canvas id=”canvas1″ width=”300″ height=”100″>
-	</canvas>
-	不可思议的 HTML5 Canvas 应用试验
-	18个基于 HTML5 Canvas 的图表库
-	20个惊艳的 HTML5 Canvas 应用试验
-	16款 HTML5 Canvas 开发的网页游戏
-	推荐14款强大的HTML5素描及绘图工具
-	6、HTML5 存储类型有什么区别？
+		HTML5 能够本地存储数据，在之前都是使用 cookies 使用的。HTML5 提供了下面两种本地存储方案：
 
-	HTML5 能够本地存储数据，在之前都是使用 cookies 使用的。HTML5 提供了下面两种本地存储方案：
+		localStorage 用于持久化的本地存储，数据永远不会过期，关闭浏览器也不会丢失。
+		sessionStorage 同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储
+		7、HTML5 有哪些新增的表单元素？
 
-	localStorage 用于持久化的本地存储，数据永远不会过期，关闭浏览器也不会丢失。
-	sessionStorage 同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储
-	7、HTML5 有哪些新增的表单元素？
+		HTML5 新增了很多表单元素让开发者构建更优秀的 Web 应用程序。
 
-	HTML5 新增了很多表单元素让开发者构建更优秀的 Web 应用程序。
+		datalist
+		datetime
+		output
+		keygen 
+		date 
+		month 
+		week
+		time
+		color
+		number 
+		range 
+		email 
+		url
+		8、HTML5 废弃了哪些 HTML4 标签？
 
-	datalist
-	datetime
-	output
-	keygen 
-	date 
-	month 
-	week
-	time
-	color
-	number 
-	range 
-	email 
-	url
-	8、HTML5 废弃了哪些 HTML4 标签？
+		HTML5 废弃了一些过时的，不合理的 HTML 标签：
 
-	HTML5 废弃了一些过时的，不合理的 HTML 标签：
+		frame
+		frameset
+		noframe
+		applet
+		big
+		center
+		basefront
+		9、HTML5 标准提供了哪些新的 API？
 
-	frame
-	frameset
-	noframe
-	applet
-	big
-	center
-	basefront
-	9、HTML5 标准提供了哪些新的 API？
+		HTML5 提供的应用程序 API 主要有：
 
-	HTML5 提供的应用程序 API 主要有：
+		Media API
+		Text Track API
+		Application Cache API
+		User Interaction
+		Data Transfer API
+		Command API
+		Constraint Validation API
+		History API
+		10、HTML5 应用程序缓存和浏览器缓存有什么区别？
 
-	Media API
-	Text Track API
-	Application Cache API
-	User Interaction
-	Data Transfer API
-	Command API
-	Constraint Validation API
-	History API
-	10、HTML5 应用程序缓存和浏览器缓存有什么区别？
+		应用程序缓存是 HTML5 的重要特性之一，提供了离线使用的功能，让应用程序可以获取本地的网站内容，例如 HTML、CSS、图片以及 JavaScript。这个特性可以提高网站性能，它的实现借助于 manifest 文件，如下：
 
-	应用程序缓存是 HTML5 的重要特性之一，提供了离线使用的功能，让应用程序可以获取本地的网站内容，例如 HTML、CSS、图片以及 JavaScript。这个特性可以提高网站性能，它的实现借助于 manifest 文件，如下：
-
-	1
-	2
-	3
-	4
-	<!doctype html>
-	<html manifest=”example.appcache”>
-	…..
-	</html>
-	与传统浏览器缓存相比，它不强制用户访问的网站内容被缓存。
-</p>
+		1
+		2
+		3
+		4
+		<!doctype html>
+		<html manifest=”example.appcache”>
+		…..
+		</html>
+		与传统浏览器缓存相比，它不强制用户访问的网站内容被缓存。
+	</p>	
+</article>
