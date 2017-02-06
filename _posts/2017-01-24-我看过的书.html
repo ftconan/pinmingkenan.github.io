@@ -3,14 +3,16 @@ layout: default
 title: 我看过的书
 ---
 
-<h2>{{ page.title }}</h2>
-<p>{{ page.date | date_to_string }}</p>
-<p>
-	<ol>
-		<li>JavaScript 权威指南(第六版)</li>
-		<li>锋利的jQuery(第二版)</li>
-		<li>JavaScript DOM 编程艺术(第二版)</li>
-		<li>Python 核心教程(第三版)</li>
-		<li>深入浅出Node.js</li>
-	</ol>
-</p>
+<article>
+	<h2>{{ page.title }}</h2>
+	<p>{{ page.date | date_to_string }}</p>
+	<p>
+		<ol>
+			<li>JavaScript 权威指南(第六版)</li>
+			<li>锋利的jQuery(第二版)</li>
+			<li>JavaScript DOM 编程艺术(第二版)</li>
+			<li>Python 核心教程(第三版)</li>
+			<li>深入浅出Node.js</li>
+		</ol>
+	</p>
+</article>
